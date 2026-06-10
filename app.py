@@ -2,7 +2,11 @@ import streamlit as st
 import pandas as pd
 import requests
 import time
+import random
+import traceback
+
 from datetime import datetime
+from datetime import time as dt_time
 
 # =====================================================
 # GOOGLE FORM
@@ -11,7 +15,14 @@ from datetime import datetime
 FORM_URL = "https://docs.google.com/forms/u/0/d/e/1FAIpQLSdYY2hbRIhrCY_a06uH0keEsBBu8x6P3AzpZ2BmcmVERjaxpQ/formResponse"
 
 # =====================================================
-# FUNGSI
+# SESSION STATE
+# =====================================================
+
+if "last_success" not in st.session_state:
+    st.session_state.last_success = 0
+
+# =====================================================
+# HELPER
 # =====================================================
 
 def clean_value(val):
@@ -23,12 +34,13 @@ def clean_value(val):
 
 
 def parse_time_excel(value):
-
     """
     Support:
-    13:09:09
-    1900-01-19 13:09:09
+    23:59:59
+    23:59:59.106000
+    1900-09-30 23:59:59.106000
     datetime
+    datetime.time
     """
 
     if pd.isna(value):
@@ -36,17 +48,26 @@ def parse_time_excel(value):
 
     try:
 
+        if isinstance(value, dt_time):
+            return value.strftime("%H:%M:%S")
+
         if isinstance(value, datetime):
             return value.strftime("%H:%M:%S")
 
         value = str(value).strip()
 
+        if value == "":
+            return None
+
         if " " in value:
             value = value.split(" ")[-1]
 
-        datetime.strptime(value, "%H:%M:%S")
+        if "." in value:
+            value = value.split(".")[0]
 
-        return value
+        dt = pd.to_datetime(value)
+
+        return dt.strftime("%H:%M:%S")
 
     except:
         return None
@@ -55,10 +76,6 @@ def parse_time_excel(value):
 def build_payload(row):
 
     payload = {}
-
-    # ==========================================
-    # TEXT FIELD
-    # ==========================================
 
     payload["entry.154565194"] = clean_value(
         row.get("Nama")
@@ -79,20 +96,18 @@ def build_payload(row):
     payload["entry.49503729"] = (
         clean_value(
             row.get("Hasil Eskalasi")
-        )
-        or "No respon"
+        ) or "No respon"
     )
 
     payload["entry.564067612"] = (
         clean_value(
             row.get("Keterangan Tambahan")
-        )
-        or "-"
+        ) or "-"
     )
 
-    # ==========================================
+    # ====================================
     # PICK UP TIME
-    # ==========================================
+    # ====================================
 
     pickup = parse_time_excel(
         row.get("Pick Up Time")
@@ -106,14 +121,15 @@ def build_payload(row):
         payload["entry.141665543_minute"] = m
         payload["entry.141665543_second"] = s
 
-    # ==========================================
-    # CREATE TICKET DATE
-    # ==========================================
+    # ====================================
+    # CREATE DATE
+    # ====================================
 
     try:
 
         tanggal = pd.to_datetime(
-            row.get("Create Ticket Date")
+            row.get("Create Ticket Date"),
+            dayfirst=True
         )
 
         payload["entry.1418866853_day"] = str(
@@ -131,9 +147,9 @@ def build_payload(row):
     except:
         pass
 
-    # ==========================================
-    # CREATE TICKET TIME
-    # ==========================================
+    # ====================================
+    # CREATE TIME
+    # ====================================
 
     create_time = parse_time_excel(
         row.get("Create Ticket Time")
@@ -154,14 +170,24 @@ def build_payload(row):
 # UI
 # =====================================================
 
+st.set_page_config(
+    page_title="Excel ➜ Google Form Importer",
+    layout="wide"
+)
+
 st.title("Excel ➜ Google Form Importer")
 
-delay = st.slider(
-    "Jeda antar data (detik)",
+max_delay = st.slider(
+    "Jeda Maksimum Antar Data (detik)",
     min_value=1,
     max_value=30,
-    value=10,
+    value=20,
     step=1
+)
+
+st.caption(
+    f"Jeda akan diacak otomatis antara "
+    f"{max(3,max_delay//3)} - {max_delay} detik"
 )
 
 file = st.file_uploader(
@@ -169,26 +195,56 @@ file = st.file_uploader(
     type=["xlsx"]
 )
 
+col1, col2 = st.columns(2)
+
+with col1:
+
+    if st.button("Reset Progress"):
+
+        st.session_state.last_success = 0
+
+        st.success(
+            "Progress berhasil direset"
+        )
+
+with col2:
+
+    st.info(
+        f"Baris terakhir berhasil : "
+        f"{st.session_state.last_success}"
+    )
+
+# =====================================================
+# LOAD FILE
+# =====================================================
+
 if file:
 
     df = pd.read_excel(file)
 
-    # hapus baris kosong
     df = df.dropna(how="all")
 
     st.dataframe(df.head())
 
     st.write(
-        f"Total data: {len(df)}"
+        f"Total data : {len(df)}"
     )
 
-    estimasi = len(df) * delay
+    avg_delay = (
+        max(3, max_delay // 3)
+        + max_delay
+    ) / 2
+
+    estimasi = int(
+        (len(df) - st.session_state.last_success)
+        * avg_delay
+    )
 
     menit = estimasi // 60
     detik = estimasi % 60
 
     st.info(
-        f"Estimasi waktu proses: "
+        f"Estimasi waktu proses : "
         f"{menit} menit {detik} detik"
     )
 
@@ -197,50 +253,79 @@ if file:
         progress = st.progress(0)
 
         status_box = st.empty()
+
         countdown_box = st.empty()
+
+        log_box = st.empty()
 
         sukses = 0
         gagal = 0
 
         session = requests.Session()
 
-        for nomor, (_, row) in enumerate(
-            df.iterrows(),
-            start=1
+        start_row = st.session_state.last_success
+
+        for nomor in range(
+            start_row,
+            len(df)
         ):
+
+            row = df.iloc[nomor]
 
             try:
 
                 payload = build_payload(row)
 
-                if payload["entry.154565194"] == "":
+                if payload.get(
+                    "entry.154565194",
+                    ""
+                ) == "":
 
                     gagal += 1
 
-                    status_box.warning(
-                        f"Baris {nomor} dilewati "
-                        f"(Nama kosong)"
-                    )
-
                     continue
 
-                response = session.post(
-                    FORM_URL,
-                    data=payload,
-                    headers={
-                        "User-Agent":
-                        "Mozilla/5.0"
-                    },
-                    timeout=30
-                )
+                berhasil = False
 
-                if response.status_code == 200:
+                for retry in range(3):
+
+                    try:
+
+                        response = session.post(
+                            FORM_URL,
+                            data=payload,
+                            headers={
+                                "User-Agent":
+                                "Mozilla/5.0",
+                                "Referer":
+                                FORM_URL.replace(
+                                    "formResponse",
+                                    "viewform"
+                                )
+                            },
+                            timeout=60
+                        )
+
+                        if response.status_code in [200, 302]:
+
+                            berhasil = True
+                            break
+
+                    except:
+
+                        time.sleep(5)
+
+                if berhasil:
 
                     sukses += 1
 
+                    st.session_state.last_success = (
+                        nomor + 1
+                    )
+
                     status_box.success(
-                        f"✓ Baris {nomor} berhasil "
-                        f"({payload['entry.1802806380']})"
+                        f"✓ Baris {nomor+1} berhasil "
+                        f"({payload.get('entry.1802806380','-')})"
                     )
 
                 else:
@@ -248,31 +333,55 @@ if file:
                     gagal += 1
 
                     status_box.error(
-                        f"✗ Baris {nomor} gagal "
-                        f"({response.status_code})"
+                        f"✗ Baris {nomor+1} gagal"
                     )
 
                 progress.progress(
-                    nomor / len(df)
+                    (nomor + 1)
+                    / len(df)
                 )
 
-                # =====================
-                # DELAY
-                # =====================
+                log_box.info(
+                    f"""
+Progress : {nomor+1}/{len(df)}
 
-                if nomor < len(df):
+Berhasil : {sukses}
+
+Gagal : {gagal}
+
+Last Success :
+{st.session_state.last_success}
+"""
+                )
+
+                # ==================================
+                # RANDOM DELAY
+                # ==================================
+
+                if nomor < len(df) - 1:
+
+                    random_delay = random.randint(
+                        max(3, max_delay // 3),
+                        max_delay
+                    )
 
                     for sisa in range(
-                        delay,
+                        random_delay,
                         0,
                         -1
                     ):
 
                         countdown_box.info(
-                            f"Menunggu "
-                            f"{sisa} detik "
-                            f"sebelum kirim "
-                            f"data berikutnya..."
+                            f"""
+Jeda Acak :
+{random_delay} detik
+
+Data ke-{nomor+1}
+berhasil dikirim
+
+Menunggu :
+{sisa} detik
+"""
                         )
 
                         time.sleep(1)
@@ -283,18 +392,27 @@ if file:
 
                 gagal += 1
 
-                status_box.error(
-                    f"Baris {nomor} error: {e}"
+                st.error(
+                    f"""
+Baris {nomor+1} ERROR
+
+{str(e)}
+
+{traceback.format_exc()}
+"""
                 )
 
         st.success(
             f"""
-Selesai
+SELESAI
 
 Berhasil : {sukses}
 
 Gagal : {gagal}
 
 Total : {len(df)}
+
+Progress tersimpan :
+{st.session_state.last_success}
 """
         )
