@@ -254,16 +254,14 @@ st.set_page_config(
     layout="wide"
 )
 
-title_color = st.color_picker(
-    "Warna Judul",
-    "#FF0000"   # Merah
-)
-
 st.markdown(
-    f"<h1 style='color:{title_color};'>Topek Monitoring</h1>",
+    """
+    <h1 style="color:#FF0000;">
+        Topek Monitoring
+    </h1>
+    """,
     unsafe_allow_html=True
 )
-
 col1, col2 = st.columns(2)
 
 with col1:
