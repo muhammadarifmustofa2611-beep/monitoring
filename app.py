@@ -348,7 +348,7 @@ if file:
     )
 
     if st.button(
-        "START IMPORT"
+        "Kirim Sekarang"
     ):
 
         start_row = load_progress()
