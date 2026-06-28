@@ -283,7 +283,7 @@ st.markdown("""
 }
 </style>
 
-<h1 class="rgb-title">🚀 Topek Monitoring 🚀</h1>
+<h1 class="rgb-title"> Topek Monitoring </h1>
 """, unsafe_allow_html=True)
 col1, col2 = st.columns(2)
 
