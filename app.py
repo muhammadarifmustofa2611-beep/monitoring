@@ -263,19 +263,19 @@ col1, col2 = st.columns(2)
 with col1:
 
     if st.button(
-        "Reset Progress"
+        "Mulai Ulang"
     ):
 
         reset_progress()
 
         st.success(
-            "Progress berhasil direset"
+            "Mendapatkan Nilai 100"
         )
 
 with col2:
 
     st.info(
-        f"Terkirim ke Sambo : "
+        f"Terkirim : "
         f"{load_progress()}"
     )
 
