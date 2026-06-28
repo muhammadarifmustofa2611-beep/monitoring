@@ -280,14 +280,14 @@ with col2:
     )
 
 min_delay = st.number_input(
-    "Min Delay",
+    "Minimal",
     min_value=1,
     max_value=60,
     value=10
 )
 
 max_delay = st.number_input(
-    "Max Delay",
+    "Maksimal",
     min_value=1,
     max_value=120,
     value=30
