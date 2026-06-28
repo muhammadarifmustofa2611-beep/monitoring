@@ -348,7 +348,7 @@ if file:
     )
 
     if st.button(
-        "Kirim Sekarang"
+        "Kirim"
     ):
 
         start_row = load_progress()
