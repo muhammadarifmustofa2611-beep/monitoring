@@ -254,14 +254,37 @@ st.set_page_config(
     layout="wide"
 )
 
-st.markdown(
-    """
-    <h1 style="color:#FF0000;">
-        Topek Monitoring
-    </h1>
-    """,
-    unsafe_allow_html=True
-)
+st.markdown("""
+<style>
+.rgb-title{
+    font-size:42px;
+    font-weight:bold;
+    text-align:center;
+    background: linear-gradient(
+        90deg,
+        red,
+        orange,
+        yellow,
+        lime,
+        cyan,
+        blue,
+        violet,
+        red
+    );
+    background-size:400% auto;
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    animation:rgbmove 4s linear infinite;
+}
+
+@keyframes rgbmove{
+    0%{background-position:0%;}
+    100%{background-position:400%;}
+}
+</style>
+
+<h1 class="rgb-title">🚀 Topek Monitoring 🚀</h1>
+""", unsafe_allow_html=True)
 col1, col2 = st.columns(2)
 
 with col1:
