@@ -294,7 +294,7 @@ max_delay = st.number_input(
 )
 
 file = st.file_uploader(
-    "Upload Excel",
+    "Unggah Excel",
     type=["xlsx"]
 )
 
