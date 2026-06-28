@@ -275,7 +275,7 @@ with col1:
 with col2:
 
     st.info(
-        f"Selamat!!! Kamu sudah mengirim sebanyak : "
+        f"Terkirim ke Sambo : "
         f"{load_progress()}"
     )
 
