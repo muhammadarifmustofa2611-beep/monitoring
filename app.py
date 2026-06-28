@@ -257,7 +257,7 @@ st.set_page_config(
 st.markdown(
     """
     <h1 style="color:#FF0000;">
-        Muhammad Arif Mustofa
+        MONITORING BACK OFFICE
     </h1>
     """,
     unsafe_allow_html=True
