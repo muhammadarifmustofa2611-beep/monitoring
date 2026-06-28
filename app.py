@@ -284,14 +284,14 @@ with col2:
     )
 
 min_delay = st.number_input(
-    "Minimal",
+    "Detik Minimal",
     min_value=1,
     max_value=60,
     value=10
 )
 
 max_delay = st.number_input(
-    "Maksimal",
+    "Detik Maksimal",
     min_value=1,
     max_value=120,
     value=30
