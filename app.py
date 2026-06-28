@@ -275,7 +275,7 @@ with col1:
 with col2:
 
     st.info(
-        f"Last Success Row : "
+        f"Selamat!!! Kamu sudah mengirim sebanyak : "
         f"{load_progress()}"
     )
 
