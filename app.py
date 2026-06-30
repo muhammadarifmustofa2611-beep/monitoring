@@ -267,13 +267,13 @@ col1, col2 = st.columns(2)
 with col1:
 
     if st.button(
-        "Mulai Ulang"
+        "Clear Cache"
     ):
 
         reset_progress()
 
         st.success(
-            "Mendapatkan Nilai 100"
+            "Mantap!!!"
         )
 
 min_delay = st.number_input(
@@ -421,7 +421,6 @@ if file:
 
             progress_text.markdown(
                 f"""
-            ### 
 
             **Proses : {percent*100:.1f}%**
 
