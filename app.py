@@ -421,17 +421,17 @@ if file:
 
             progress_text.markdown(
                 f"""
-            ### 📊 Progress
+            ### SEDANG MEMASAK ROTI
 
             **{percent*100:.1f}%**
 
             **Data : {current}/{total}**
 
-            ✅ Berhasil : **{success}**
+            Berhasil : **{success}**
 
-            ❌ Gagal : **{failed}**
+            Gagal : **{failed}**
 
-            ⏳ Estimasi sisa waktu : **{eta_minutes} menit {eta_secs} detik**
+            Estimasi sisa waktu : **{eta_minutes} menit {eta_secs} detik**
             """
             )
 
@@ -448,9 +448,6 @@ if file:
             f"""
 Import selesai
 
-Berhasil : {success}
-
-Gagal : {failed}
 """
         )
 
