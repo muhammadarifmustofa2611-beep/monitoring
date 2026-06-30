@@ -277,10 +277,10 @@ with col1:
         )
 
 with col2:
-    progress_info = st.empty()
 
-    progress_info.info(
-        f"Current : {load_progress()} / 0"
+    st.info(
+        f"Terkirim : "
+        f"{load_progress()}"
     )
     
 min_delay = st.number_input(
