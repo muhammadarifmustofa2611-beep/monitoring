@@ -481,7 +481,7 @@ st.markdown("""
 
 <div class="marquee">
     <span>
-    Barang siapa yang mempersulit urusan orang lain, maka Allah akan mempersulitnya di hari kiamat (HR. Muslim)
+    "Barang siapa yang mempersulit urusan orang lain, maka Allah akan mempersulitnya di hari kiamat" (HR. Muslim)
     </span>
 </div>
 """, unsafe_allow_html=True)
