@@ -276,6 +276,13 @@ with col1:
             "Mantap!!!"
         )
 
+with col2:
+    progress_info = st.empty()
+
+    progress_info.info(
+        f"Current : {load_progress()} / 0"
+    )
+    
 min_delay = st.number_input(
     "Detik Minimal",
     min_value=1,
@@ -423,8 +430,6 @@ if file:
                 f"""
 
             **Proses : {percent*100:.1f}%**
-
-            **Data : {current}/{total}**
 
             Berhasil : **{success}**
 
