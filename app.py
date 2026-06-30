@@ -466,12 +466,14 @@ st.markdown("""
 .marquee {
     overflow: hidden;
     white-space: nowrap;
-    background: #000000;   /* Hitam */
+    background: transparent;
     color: white;
     padding: 10px;
     font-size:18px;
     font-weight:bold;
 }
+</style>
+""", unsafe_allow_html=True)
 
 .marquee span{
     display:inline-block;
