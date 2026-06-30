@@ -275,13 +275,6 @@ with col1:
         st.success(
             "Mantap!!!"
         )
-
-with col2:
-
-    st.info(
-        f"Terkirim : "
-        f"{load_progress()}"
-    )
     
 min_delay = st.number_input(
     "Detik Minimal",
