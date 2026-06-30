@@ -472,8 +472,6 @@ st.markdown("""
     font-size:18px;
     font-weight:bold;
 }
-</style>
-""", unsafe_allow_html=True)
 
 .marquee span{
     display:inline-block;
