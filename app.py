@@ -401,38 +401,38 @@ if file:
             # ==========================
             # Progress + Estimasi Waktu
             # ==========================
-            current = idx + 1
-            total = len(df)
+current = idx + 1
+total = len(df)
 
-            percent = current / total
+percent = current / total
 
-            progress_bar.progress(percent)
+progress_bar.progress(percent)
 
-            elapsed = time.time() - start_time
+elapsed = time.time() - start_time
 
-            avg_time = elapsed / (current - start_row)
+avg_time = elapsed / (current - start_row)
 
-            remaining = total - current
+remaining = total - current
 
-            eta_seconds = avg_time * remaining
+eta_seconds = avg_time * remaining
 
-            eta_minutes = int(eta_seconds // 60)
-            eta_secs = int(eta_seconds % 60)
+eta_minutes = int(eta_seconds // 60)
+eta_secs = int(eta_seconds % 60)
 
-            progress_text.markdown(
-                f"""
+progress_text.markdown(
+    f"""
 
-            **Proses : {percent*100:.1f}%**
+**Proses : {percent*100:.1f}%**
 
-            **Data : {current}/{total}**
+**Data : {current}/{total}**
 
-            Berhasil : **{success}**
+Berhasil : **{success}**
 
-            Gagal : **{failed}**
+Gagal : **{failed}**
 
-            Estimasi sisa waktu : **{eta_minutes} menit {eta_secs} detik**
-            """
-            )
+Estimasi sisa waktu : **{eta_minutes} menit {eta_secs} detik**
+"""
+)
 
             if idx < len(df) - 1:
 
