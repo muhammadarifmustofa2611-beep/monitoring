@@ -421,9 +421,9 @@ if file:
 
             progress_text.markdown(
                 f"""
-            ### SEDANG MEMASAK ROTI
+            ### 
 
-            **{percent*100:.1f}%**
+            **Proses : {percent*100:.1f}%**
 
             **Data : {current}/{total}**
 
