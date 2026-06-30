@@ -358,9 +358,12 @@ if file:
         progress_bar = st.progress(0)
 
         status_box = st.empty()
+        progress_text = st.empty()
 
         success = 0
         failed = 0
+
+        start_time = time.time()
 
         for idx in range(
             start_row,
@@ -402,8 +405,41 @@ if file:
                     f"✗ {row['ID TICKET']} | {err}"
                 )
 
-            progress_bar.progress(
-                (idx + 1) / len(df)
+            # ==========================
+            # Progress + Estimasi Waktu
+            # ==========================
+            current = idx + 1
+            total = len(df)
+
+            percent = current / total
+
+            progress_bar.progress(percent)
+
+            elapsed = time.time() - start_time
+
+            avg_time = elapsed / (current - start_row)
+
+            remaining = total - current
+
+            eta_seconds = avg_time * remaining
+
+            eta_minutes = int(eta_seconds // 60)
+            eta_secs = int(eta_seconds % 60)
+
+            progress_text.markdown(
+                f"""
+            ### 📊 Progress
+
+            **{percent*100:.1f}%**
+
+            **Data : {current}/{total}**
+
+            ✅ Berhasil : **{success}**
+
+            ❌ Gagal : **{failed}**
+
+            ⏳ Estimasi sisa waktu : **{eta_minutes} menit {eta_secs} detik**
+            """
             )
 
             if idx < len(df) - 1:
