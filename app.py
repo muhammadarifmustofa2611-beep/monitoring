@@ -466,7 +466,7 @@ st.markdown("""
 .marquee {
     overflow: hidden;
     white-space: nowrap;
-    background: #B00000;
+    background: #000000;   /* Hitam */
     color: white;
     padding: 10px;
     font-size:18px;
@@ -491,7 +491,7 @@ st.markdown("""
 
 <div class="marquee">
     <span>
-    📢 Barang siapa yang mempersulit urusan orang lain, maka Allah akan mempersulitnya di hari kiamat (HR. Muslim).
+    Barang siapa yang mempersulit urusan orang lain, maka Allah akan mempersulitnya di hari kiamat (HR. Muslim)
     </span>
 </div>
 """, unsafe_allow_html=True)
