@@ -463,60 +463,35 @@ Gagal : {failed}
 
 st.markdown("""
 <style>
-.ticker-wrap{
-    position:fixed;
-    left:0;
-    bottom:0;
-    width:100%;
-    height:42px;
-    display:flex;
-    z-index:999999;
-    font-family:Arial,sans-serif;
-}
-
-.ticker-title{
-    width:120px;
-    background:#FFD700;
-    color:black;
+.marquee {
+    overflow: hidden;
+    white-space: nowrap;
+    background: #B00000;
+    color: white;
+    padding: 10px;
+    font-size:18px;
     font-weight:bold;
-    display:flex;
-    justify-content:center;
-    align-items:center;
 }
 
-.ticker-news{
-    flex:1;
-    background:#B00000;
-    color:white;
-    overflow:hidden;
-    display:flex;
-    align-items:center;
-}
-
-.ticker-news span{
-    white-space:nowrap;
+.marquee span{
+    display:inline-block;
     padding-left:100%;
-    animation:running 25s linear infinite;
-    font-size:17px;
-    font-weight:bold;
+    animation: marquee 20s linear infinite;
 }
 
-@keyframes running{
-    from{
+@keyframes marquee{
+    0%{
         transform:translateX(0);
     }
-    to{
-        transform:translateX(-200%);
+    100%{
+        transform:translateX(-100%);
     }
 }
 </style>
 
-<div class="ticker-wrap">
-    <div class="ticker-title">INFO</div>
-    <div class="ticker-news">
-        <span>
-        "Barang siapa yang mempersulit urusan orang lain, maka Allah akan mempersulitnya di hari kiamat" (HR. Muslim).
-        </span>
-    </div>
+<div class="marquee">
+    <span>
+    📢 Barang siapa yang mempersulit urusan orang lain, maka Allah akan mempersulitnya di hari kiamat (HR. Muslim).
+    </span>
 </div>
 """, unsafe_allow_html=True)
