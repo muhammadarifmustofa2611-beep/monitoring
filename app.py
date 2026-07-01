@@ -448,7 +448,7 @@ st.markdown("""
     overflow: hidden;
     white-space: nowrap;
     background: transparent;
-    color: white;
+    color: red;
     padding: 10px;
     font-size:18px;
     font-weight:bold;
