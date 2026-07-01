@@ -448,32 +448,44 @@ st.markdown("""
     overflow: hidden;
     white-space: nowrap;
     background: transparent;
-    color: blue
-;
     padding: 10px;
-    font-size:18px;
-    font-weight:bold;
+    font-size: 18px;
+    font-weight: bold;
 }
 
 .marquee span{
-    display:inline-block;
-    padding-left:100%;
+    display: inline-block;
+    padding-left: 100%;
     animation: marquee 20s linear infinite;
+
+    /* Gradasi warna seperti logo TOPEK MONITORING */
+    background: linear-gradient(
+        90deg,
+        #163A8C 0%,
+        #1D5FD0 30%,
+        #00AEEF 70%,
+        #00C8FF 100%
+    );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
 }
 
 @keyframes marquee{
     0%{
-        transform:translateX(0);
+        transform: translateX(0);
     }
     100%{
-        transform:translateX(-100%);
+        transform: translateX(-100%);
     }
 }
 </style>
 
 <div class="marquee">
     <span>
-    "Barang siapa yang mempersulit urusan orang lain, maka Allah akan mempersulitnya di hari kiamat" (HR. Muslim)
+        "Barang siapa yang mempersulit urusan orang lain, maka Allah akan mempersulitnya di hari kiamat" (HR. Muslim)
     </span>
 </div>
 """, unsafe_allow_html=True)
