@@ -254,14 +254,21 @@ st.set_page_config(
     layout="wide"
 )
 
-st.markdown(
-    """
-    <h1 style="color:#FF0000;">
-        MONITORING BACK OFFICE
-    </h1>
-    """,
-    unsafe_allow_html=True
-)
+from pathlib import Path
+from PIL import Image
+
+logo_path = Path(__file__).parent / "Topek Monitoring logo with Wi-Fi symbols(1).png"
+
+logo = Image.open(logo_path)
+
+col1, col2, col3 = st.columns([1, 6, 1])
+
+with col2:
+    st.image(
+        logo,
+        use_container_width=True
+    )
+    
 col1, col2 = st.columns(2)
 
 with col1:
