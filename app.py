@@ -92,10 +92,14 @@ def get_pickup_time():
     # Data berikutnya
     else:
 
-        pickup = last_submit_time
+        pickup = last_submit_time + timedelta(
+            seconds=random.randint(1, 10)
+        )
+
+    # Simpan pickup terakhir
+    last_submit_time = pickup
 
     return pickup
-
 # =====================================================
 # BUILD PAYLOAD
 # =====================================================
