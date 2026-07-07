@@ -489,7 +489,7 @@ st.markdown("""
 
 <div class="marquee">
     <span>
-        "Kami mendukung AnamSaa menjadi TL" (Guntur)
+        "Hadirilah Do'a bersama dalam rangka pencalonan AnamSaa menjadi TL, Rabu 07 Juli 2026 di Floor Back Office jam 12:00 Wib - selesai. NB: Membawa alat makan" (BO Edan)
     </span>
 </div>
 """, unsafe_allow_html=True)
