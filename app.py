@@ -489,7 +489,7 @@ st.markdown("""
 
 <div class="marquee">
     <span>
-        "Barang siapa yang mempersulit urusan orang lain, maka Allah akan mempersulitnya di hari kiamat" (HR. Muslim)
+        "Kami mendukung AnamSaa menjadi TL" (Guntur)
     </span>
 </div>
 """, unsafe_allow_html=True)
