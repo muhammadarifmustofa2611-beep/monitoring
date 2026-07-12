@@ -489,7 +489,7 @@ st.markdown("""
 
 <div class="marquee">
     <span>
-        "AKU RESIGN UNTUK MENGEJAR CINTA DAN CITA CITA" ~ SAVINI (BO Edan)
+        "RESIGN UNTUK MENGEJAR CINTA DAN CITA CITA" ~ SAVINI (BO Edan)
     </span>
 </div>
 """, unsafe_allow_html=True)
