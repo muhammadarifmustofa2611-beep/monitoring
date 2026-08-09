@@ -489,7 +489,7 @@ st.markdown("""
 
 <div class="marquee">
     <span>
-        "RESIGN UNTUK MENGEJAR CINTA DAN CITA CITA" ~ SAVINI (BO Edan)
+        "Gery Ganteng, Guntur Ora (BO Edan)
     </span>
 </div>
 """, unsafe_allow_html=True)
