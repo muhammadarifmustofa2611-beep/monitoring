@@ -489,7 +489,7 @@ st.markdown("""
 
 <div class="marquee">
     <span>
-        "Gery Ganteng, Guntur Ora (BO Edan)
+        "AKU DAH IKU A, LUNGO NDEK PAJAR APE DOLEN TAPI RAISIT (BO Edan)
     </span>
 </div>
 """, unsafe_allow_html=True)
