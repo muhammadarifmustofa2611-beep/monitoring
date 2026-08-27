@@ -489,7 +489,7 @@ st.markdown("""
 
 <div class="marquee">
     <span>
-        "AKU DAK IKU A, LUNGO NDEK PAJAR APE DOLEN TAPI RAISIT (BO Edan)
+        "Topek si Topekkkk (BO Edan)
     </span>
 </div>
 """, unsafe_allow_html=True)
