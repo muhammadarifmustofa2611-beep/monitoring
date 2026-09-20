@@ -265,9 +265,7 @@ def show_welcome_popup():
         <p>
            <b>Janji Jangan Banyak Banyak Yaaaa</b>.
         </p>
-        <p style="margin-bottom: 0;">
-            Klik tanda <b>×</b> di pojok kanan atas untuk menutup pemberitahuan.
-        </p>
+        
     </div>
     """, unsafe_allow_html=True)
 
