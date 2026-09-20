@@ -272,7 +272,7 @@ def show_welcome_popup():
             <b>Hasil Eskalasi</b> sudah sesuai.
         </p>
         <p style="margin-bottom: 0;">
-            <b>Jangan Banyak Banyak ya, Syukron Yale Yale</b>
+            <b>Jangan Banyak Banyak ya, Syukron Yale Yale🤣</b>
         </p>
     </div>
     """, unsafe_allow_html=True)
