@@ -263,10 +263,6 @@ def show_welcome_popup():
     ">
         <h3 style="margin-top: 0;">Selamat Datang di Topek Monitoring 👋</h3>
         <p>
-            Silakan periksa kembali data Excel sebelum menekan tombol
-            <b>Kirim</b>.
-        </p>
-        <p>
            <b>Janji Jangan Banyak Banyak Yaaaa</b>.
         </p>
         <p style="margin-bottom: 0;">
