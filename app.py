@@ -250,146 +250,47 @@ def submit_form(session, payload):
     return False, last_error
 
 # =====================================================
-# UI
+# POPUP PEMBERITAHUAN SAAT MEMBUKA APLIKASI
 # =====================================================
 
+@st.dialog("📢 Pemberitahuan")
+def show_welcome_popup():
+    st.markdown("""
+    <div style="
+        padding: 8px 4px;
+        font-size: 16px;
+        line-height: 1.6;
+    ">
+        <h3 style="margin-top: 0;">Selamat Datang di Topek Monitoring 👋</h3>
+        <p>
+            Silakan periksa kembali data Excel sebelum menekan tombol
+            <b>Kirim</b>.
+        </p>
+        <p>
+            Pastikan <b>Nama, ID TICKET, SBU, Eskalasi Back Office,
+            Create Ticket Date, Create Ticket Time</b> dan
+            <b>Hasil Eskalasi</b> sudah sesuai.
+        </p>
+        <p style="margin-bottom: 0;">
+            Klik tanda <b>×</b> di pojok kanan atas untuk menutup pemberitahuan.
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+
+
+# Tampilkan popup hanya sekali ketika halaman pertama kali dibuka
+if "welcome_popup_shown" not in st.session_state:
+    st.session_state.welcome_popup_shown = True
+    show_welcome_popup()
+
 # =====================================================
-# CONFIG HALAMAN
+# UI
 # =====================================================
 
 st.set_page_config(
     page_title="MONIT Importer",
     layout="wide"
 )
-
-# =====================================================
-# STYLE POPUP
-# =====================================================
-
-st.markdown("""
-<style>
-div[data-testid="stDialog"] > div {
-    width: min(560px, 92vw) !important;
-    max-width: 560px !important;
-}
-
-div[data-testid="stDialog"] div[role="dialog"] {
-    border-radius: 18px !important;
-    padding: 8px 12px 18px 12px !important;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.45) !important;
-}
-
-.popup-content {
-    text-align: center !important;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.popup-icon {
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 4px auto 12px auto;
-    font-size: 32px;
-    border: 2px solid rgba(40, 110, 220, 0.22);
-    box-shadow: 0 3px 12px rgba(40, 110, 220, 0.12);
-}
-
-.popup-title {
-    text-align: center !important;
-    font-size: 27px !important;
-    font-weight: 800 !important;
-    letter-spacing: 0.5px;
-    margin: 4px 0 18px 0 !important;
-    background: linear-gradient(90deg, #163A8C, #1D5FD0, #00AEEF);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.popup-line {
-    width: 88%;
-    height: 1px;
-    margin: 0 auto 20px auto;
-    background: rgba(128, 128, 128, 0.25);
-}
-
-.popup-text {
-    width: 90%;
-    text-align: center !important;
-    font-size: 16px !important;
-    line-height: 1.65 !important;
-    margin: 0 auto 14px auto !important;
-}
-
-div[data-testid="stDialog"] .stButton {
-    display: flex !important;
-    justify-content: center !important;
-}
-
-div[data-testid="stDialog"] .stButton > button {
-    width: 240px !important;
-    border-radius: 10px !important;
-    font-size: 17px !important;
-    font-weight: 700 !important;
-    padding: 10px 20px !important;
-}
-</style>
-""", unsafe_allow_html=True)
-
-# =====================================================
-# POPUP PEMBERITAHUAN
-# =====================================================
-
-@st.dialog(" ")
-def show_welcome_popup():
-    st.markdown("""
-    <div class="popup-content">
-
-        <div class="popup-icon">🔔</div>
-
-        <div class="popup-title">
-            PEMBERITAHUAN
-        </div>
-
-        <div class="popup-line"></div>
-
-        <div class="popup-text">
-            <b>Selamat Datang di</b><br>
-            <span style="font-size:20px; font-weight:800; color:#1D5FD0;">
-                TOPEK MONITORING
-            </span>
-        </div>
-
-        <div class="popup-text">
-            Silakan periksa kembali data Excel sebelum menekan tombol
-            <b style="color:#1D5FD0;">KIRIM</b>.
-        </div>
-
-        <div class="popup-text">
-            Pastikan <b>Nama, ID TICKET, SBU, Eskalasi Back Office,
-            Create Ticket Date, Create Ticket Time</b> dan
-            <b>Hasil Eskalasi</b> sudah sesuai.
-        </div>
-
-        <div class="popup-line"></div>
-
-    </div>
-    """, unsafe_allow_html=True)
-
-    _, center, _ = st.columns([1, 2, 1])
-    with center:
-        if st.button("Mengerti", use_container_width=True):
-            st.rerun()
-
-
-if "welcome_popup_shown" not in st.session_state:
-    st.session_state.welcome_popup_shown = True
-    show_welcome_popup()
 
 st.image("assets/logo.png", width=350)
     
