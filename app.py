@@ -267,9 +267,7 @@ def show_welcome_popup():
             <b>Kirim</b>.
         </p>
         <p>
-            Pastikan <b>Nama, ID TICKET, SBU, Eskalasi Back Office,
-            Create Ticket Date, Create Ticket Time</b> dan
-            <b>Hasil Eskalasi</b> sudah sesuai.
+           <b>Janji Jangan Banyak Banyak Yaaaa</b>.
         </p>
         <p style="margin-bottom: 0;">
             Klik tanda <b>×</b> di pojok kanan atas untuk menutup pemberitahuan.
