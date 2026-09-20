@@ -257,22 +257,24 @@ def submit_form(session, payload):
 def show_welcome_popup():
     st.markdown("""
     <div style="
-        padding: 8px 4px;
-        font-size: 16px;
-        line-height: 1.6;
+        width: 100%;
+        padding: 5px 10px 10px 10px;
         text-align: center !important;
+        box-sizing: border-box;
     ">
 
         <h3 style="
-            margin-top: 0;
             text-align: center !important;
+            margin: 5px 0 20px 0;
+            font-size: 18px;
         ">
             Selamat Datang di Topek Monitoring 👋
         </h3>
 
         <p style="
             text-align: center !important;
-            margin: 15px auto;
+            margin: 0 auto 15px auto;
+            font-size: 14px;
         ">
             Silakan periksa kembali data Excel sebelum menekan tombol
             <b>Kirim</b>.
@@ -280,7 +282,8 @@ def show_welcome_popup():
 
         <p style="
             text-align: center !important;
-            margin: 15px auto;
+            margin: 0 auto 15px auto;
+            font-size: 14px;
         ">
             Pastikan <b>Nama, ID TICKET, SBU, Eskalasi Back Office,
             Create Ticket Date, Create Ticket Time</b> dan
@@ -289,14 +292,14 @@ def show_welcome_popup():
 
         <p style="
             text-align: center !important;
-            margin: 15px auto 0 auto;
+            margin: 0 auto;
+            font-size: 14px;
         ">
             <b>Jangan Banyak Banyak ya, Syukron Yale Yale🤣</b>
         </p>
 
     </div>
     """, unsafe_allow_html=True)
-
 # Tampilkan popup hanya sekali ketika halaman pertama kali dibuka
 if "welcome_popup_shown" not in st.session_state:
     st.session_state.welcome_popup_shown = True
