@@ -260,23 +260,42 @@ def show_welcome_popup():
         padding: 8px 4px;
         font-size: 16px;
         line-height: 1.6;
+        text-align: center !important;
     ">
-        <h3 style="margin-top: 0;">Selamat Datang di Topek Monitoring 👋</h3>
-        <p>
+
+        <h3 style="
+            margin-top: 0;
+            text-align: center !important;
+        ">
+            Selamat Datang di Topek Monitoring 👋
+        </h3>
+
+        <p style="
+            text-align: center !important;
+            margin: 15px auto;
+        ">
             Silakan periksa kembali data Excel sebelum menekan tombol
             <b>Kirim</b>.
         </p>
-        <p>
+
+        <p style="
+            text-align: center !important;
+            margin: 15px auto;
+        ">
             Pastikan <b>Nama, ID TICKET, SBU, Eskalasi Back Office,
             Create Ticket Date, Create Ticket Time</b> dan
             <b>Hasil Eskalasi</b> sudah sesuai.
         </p>
-        <p style="margin-bottom: 0;">
+
+        <p style="
+            text-align: center !important;
+            margin: 15px auto 0 auto;
+        ">
             <b>Jangan Banyak Banyak ya, Syukron Yale Yale🤣</b>
         </p>
+
     </div>
     """, unsafe_allow_html=True)
-
 
 # Tampilkan popup hanya sekali ketika halaman pertama kali dibuka
 if "welcome_popup_shown" not in st.session_state:
