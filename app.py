@@ -250,6 +250,40 @@ def submit_form(session, payload):
     return False, last_error
 
 # =====================================================
+# POPUP PEMBERITAHUAN SAAT MEMBUKA APLIKASI
+# =====================================================
+
+@st.dialog("📢 Pemberitahuan")
+def show_welcome_popup():
+    st.markdown("""
+    <div style="
+        padding: 8px 4px;
+        font-size: 16px;
+        line-height: 1.6;
+    ">
+        <h3 style="margin-top: 0;">Selamat Datang di Topek Monitoring 👋</h3>
+        <p>
+            Silakan periksa kembali data Excel sebelum menekan tombol
+            <b>Kirim</b>.
+        </p>
+        <p>
+            Pastikan <b>Nama, ID TICKET, SBU, Eskalasi Back Office,
+            Create Ticket Date, Create Ticket Time</b> dan
+            <b>Hasil Eskalasi</b> sudah sesuai.
+        </p>
+        <p style="margin-bottom: 0;">
+            Klik tanda <b>×</b> di pojok kanan atas untuk menutup pemberitahuan.
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+
+
+# Tampilkan popup hanya sekali ketika halaman pertama kali dibuka
+if "welcome_popup_shown" not in st.session_state:
+    st.session_state.welcome_popup_shown = True
+    show_welcome_popup()
+
+# =====================================================
 # UI
 # =====================================================
 
