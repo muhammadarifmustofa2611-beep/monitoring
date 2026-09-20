@@ -272,7 +272,7 @@ def show_welcome_popup():
             <b>Hasil Eskalasi</b> sudah sesuai.
         </p>
         <p style="margin-bottom: 0;">
-            Klik tanda <b>×</b> di pojok kanan atas untuk menutup pemberitahuan.
+            <b>Syukron Yale Yale, Jangan Banyak Banyak Lee🤣</b>
         </p>
     </div>
     """, unsafe_allow_html=True)
