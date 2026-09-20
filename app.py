@@ -250,129 +250,30 @@ def submit_form(session, payload):
     return False, last_error
 
 # =====================================================
-# PAGE CONFIG
-# =====================================================
-
-# =====================================================
-# STYLE POPUP
-# =====================================================
-
-st.markdown("""
-<style>
-
-/* Kotak dialog */
-div[data-testid="stDialog"] > div {
-    width: min(560px, 92vw) !important;
-    max-width: 560px !important;
-}
-
-/* Seluruh isi popup rata tengah */
-div[data-testid="stDialog"] [role="dialog"] {
-    text-align: center !important;
-}
-
-.popup-content {
-    width: 100%;
-    text-align: center !important;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-/* Judul bawaan dialog */
-div[data-testid="stDialog"] [role="dialog"] h2 {
-    text-align: center !important;
-    width: 100% !important;
-    font-size: 24px !important;
-}
-
-/* Isi teks */
-.popup-content h3,
-.popup-content p,
-.popup-content div {
-    text-align: center !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-}
-
-/* Garis */
-.popup-line {
-    width: 88%;
-    height: 1px;
-    margin: 15px auto 20px auto;
-    background: rgba(128, 128, 128, 0.25);
-}
-
-/* Tombol Mengerti */
-div[data-testid="stDialog"] .stButton {
-    display: flex !important;
-    justify-content: center !important;
-}
-
-div[data-testid="stDialog"] .stButton > button {
-    width: 240px !important;
-    margin: 0 auto !important;
-}
-
-</style>
-""", unsafe_allow_html=True)
-
-# =====================================================
 # POPUP PEMBERITAHUAN SAAT MEMBUKA APLIKASI
 # =====================================================
 
 @st.dialog("📢 Pemberitahuan")
 def show_welcome_popup():
-
     st.markdown("""
-    <div class="popup-content">
-
-        <div style="
-            font-size: 16px;
-            line-height: 1.7;
-            text-align: center !important;
-        ">
-
-            <p style="
-                text-align: center !important;
-                font-size: 18px;
-                font-weight: 700;
-                margin: 8px 0 18px 0;
-            ">
-                Selamat Datang di Topek Monitoring 👋
-            </p>
-
-            <p style="
-                text-align: center !important;
-                margin: 0 auto 16px auto;
-            ">
-                Silakan periksa kembali data Excel sebelum menekan tombol
-                <b>Kirim</b>.
-            </p>
-
-            <p style="
-                text-align: center !important;
-                margin: 0 auto 16px auto;
-            ">
-                Pastikan <b>Nama, ID TICKET, SBU, Eskalasi Back Office,
-                Create Ticket Date, Create Ticket Time</b> dan
-                <b>Hasil Eskalasi</b> sudah sesuai.
-            </p>
-
-            <div class="popup-line"></div>
-
-            <p style="
-                text-align: center !important;
-                margin: 0 auto;
-                font-size: 14px;
-            ">
-                Klik tanda <b>×</b> di pojok kanan atas
-                untuk menutup pemberitahuan.
-            </p>
-
-        </div>
-
+    <div style="
+        padding: 8px 4px;
+        font-size: 16px;
+        line-height: 1.6;
+    ">
+        <h3 style="margin-top: 0;">Selamat Datang di Topek Monitoring 👋</h3>
+        <p>
+            Silakan periksa kembali data Excel sebelum menekan tombol
+            <b>Kirim</b>.
+        </p>
+        <p>
+            Pastikan <b>Nama, ID TICKET, SBU, Eskalasi Back Office,
+            Create Ticket Date, Create Ticket Time</b> dan
+            <b>Hasil Eskalasi</b> sudah sesuai.
+        </p>
+        <p style="margin-bottom: 0;">
+            Klik tanda <b>×</b> di pojok kanan atas untuk menutup pemberitahuan.
+        </p>
     </div>
     """, unsafe_allow_html=True)
 
@@ -385,6 +286,11 @@ if "welcome_popup_shown" not in st.session_state:
 # =====================================================
 # UI
 # =====================================================
+
+st.set_page_config(
+    page_title="MONIT Importer",
+    layout="wide"
+)
 
 st.image("assets/logo.png", width=350)
     
