@@ -15,7 +15,7 @@ from zoneinfo import ZoneInfo
 
 FORM_URL = (
     "https://docs.google.com/forms/u/0/d/e/"
-    "1FAIpQLSdYY2hbRIhrCY_a06uH0keEsBBu8x6P3AzpZ2BmcmVERjaxpQ"
+    "1FAIpQLScd5tNNBOrQkyN58qnA9dRwNxbm1cot5D80rQthgIUpkkTQPw"
     "/formResponse"
 )
 
